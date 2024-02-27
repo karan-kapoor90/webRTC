@@ -12,7 +12,7 @@ export class Server {
  private activeSockets: string[] = [];
 
  
- private readonly DEFAULT_PORT = 8080;
+ private readonly DEFAULT_PORT = 8081;
  
  constructor() {
    this.initialize();
@@ -95,6 +95,13 @@ export class Server {
             socketId: socket.id
           });
         });
+
+        socket.on("send-emoji", data => {
+            socket.to(data.to).emit("receive-emoji", {
+            socket: socket.id,
+            emoji: data.emoji
+          });
+        })
       });
  }
  

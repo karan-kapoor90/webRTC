@@ -50,6 +50,14 @@ async function callUser(socketId) {
   });
 }
 
+async function sendEmoji(socketId) {
+  <>some numeric code to represent every emoji</>
+  socket.emit("send-emoji", {
+    emojiID,
+    to: socketId
+  });
+}
+
 function updateUserList(socketIds) {
   const activeUserContainer = document.getElementById("active-user-container");
 
@@ -63,7 +71,7 @@ function updateUserList(socketIds) {
   });
 }
 
-const socket = io.connect("localhost:8080");
+const socket = io.connect("localhost:8081");
 
 socket.on("update-user-list", ({ users }) => {
   updateUserList(users);
@@ -91,6 +99,10 @@ socket.on("call-made", async data => {
       return;
     }
   }
+
+  socket.on("recieve-emoji", data => {
+    <>code to move the emoji image across the screen</>
+  })
 
   await peerConnection.setRemoteDescription(
     new RTCSessionDescription(data.offer)
@@ -128,7 +140,7 @@ peerConnection.ontrack = function({ streams: [stream] }) {
   }
 };
 
-navigator.getUserMedia(
+navigator.mediaDevices.getUserMedia(
   { video: true, audio: true },
   stream => {
     const localVideo = document.getElementById("local-video");
