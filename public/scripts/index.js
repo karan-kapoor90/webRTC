@@ -51,7 +51,7 @@ async function callUser(socketId) {
 }
 
 async function sendEmoji(socketId) {
-  <>some numeric code to represent every emoji</>
+  // some numeric code to represent every emoji
   socket.emit("send-emoji", {
     emojiID,
     to: socketId
@@ -101,7 +101,7 @@ socket.on("call-made", async data => {
   }
 
   socket.on("recieve-emoji", data => {
-    <>code to move the emoji image across the screen</>
+    // code to move the emoji image across the screen
   })
 
   await peerConnection.setRemoteDescription(

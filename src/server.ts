@@ -95,7 +95,7 @@ export class Server {
             socketId: socket.id
           });
         });
-
+        // code to receive emojis sent by a client
         socket.on("send-emoji", data => {
             socket.to(data.to).emit("receive-emoji", {
             socket: socket.id,
